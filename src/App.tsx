@@ -4,5 +4,9 @@ import route from "./routes/index.tsx";
 import zhCN from "antd/locale/zh_CN";
 import { ConfigProvider } from "antd";
 export default function App() {
-  return <ConfigProvider locale={zhCN}>{useRoutes(route)}</ConfigProvider>;
+  return (
+    <ConfigProvider locale={zhCN}>
+      <div style={{ width: "100vw", height: "100vh" }}>{useRoutes(route)}</div>
+    </ConfigProvider>
+  );
 }
