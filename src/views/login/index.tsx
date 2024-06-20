@@ -21,15 +21,13 @@ export default function Login() {
 
   return (
     <div className={login.loginContainer}>
-      <Row>
+      <Row justify="center">
         <Col xl={12} xs={0}></Col>
-        <Col xl={12} xs={24}>
+        <Col xl={12} xs={24} flex={1} style={{ height: "100%" }}>
           <Form
             className={login.formItem}
             name="basic"
-            wrapperCol={{ span: 8 }}
-            labelAlign={"right"}
-            labelCol={{ span: 2 }}
+            wrapperCol={{ span: 24 }}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
             autoComplete="off"
@@ -41,6 +39,7 @@ export default function Login() {
               rules={[{ required: true, message: "请输入用户名" }]}
             >
               <Input
+                style={{ width: "100%" }}
                 prefix={<UserOutlined className="site-form-item-icon" />}
                 placeholder="用户名"
               />

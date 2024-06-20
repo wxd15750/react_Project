@@ -6,7 +6,16 @@
   .formItem {
     position: relative;
     top: 30vh;
-    width: 80%;
+    width: 50%;
+    height: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background: rgba($color: #fcfbfb, $alpha: 0.4);
+    border-radius: 8px;
+    padding: 10px;
+    box-sizing: border-box;
     .title_h1 {
       font-size: 24px;
       font-weight: 700;
