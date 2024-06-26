@@ -6,6 +6,7 @@ import LayoutContent from "../layout/index.tsx";
 import { RouteItem } from "./type";
 import { Home } from "../views/home/index.tsx";
 import Role from "../views/sys/role/index.tsx";
+import { Navigate } from "react-router-dom";
 const route: Array<RouteItem> = [
   {
     path: "/login",
@@ -15,7 +16,10 @@ const route: Array<RouteItem> = [
       hidden: true,
     },
   },
-
+  {
+    path: "/",
+    element: <Navigate to="/home"></Navigate>,
+  },
   {
     path: "/",
     element: <LayoutContent />,
@@ -34,17 +38,35 @@ const route: Array<RouteItem> = [
       },
       {
         path: "/sys",
-        element: <Home></Home>,
+        element: <Role></Role>,
         meta: {
           title: "系统管理",
           hidden: false,
         },
         children: [
           {
-            path: "role",
+            path: "/sys/role",
             element: <Role></Role>,
             meta: {
               title: "角色管理",
+              hidden: false,
+            },
+          },
+        ],
+      },
+      {
+        path: "/sys1",
+        element: <Home></Home>,
+        meta: {
+          title: "test11",
+          hidden: false,
+        },
+        children: [
+          {
+            path: "/sys1/role",
+            element: <Home></Home>,
+            meta: {
+              title: "123",
               hidden: false,
             },
           },

@@ -1,6 +1,5 @@
 import { Layout, theme } from "antd";
-import { Outlet, useRoutes } from "react-router-dom";
-import routes from "../../routes";
+import { Outlet } from "react-router-dom";
 // 导入样式文件
 const { Content } = Layout;
 export default function MainContent() {
@@ -17,7 +16,6 @@ export default function MainContent() {
         borderRadius: borderRadiusLG,
       }}
     >
-      {/* {useRoutes(routes)} */}
       <Outlet />
     </Content>
   );
