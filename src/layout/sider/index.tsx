@@ -4,6 +4,8 @@ import Avator from "../avator";
 import route from "../../routes";
 import { RouteItem } from "../../routes/type";
 import { useLocation, useNavigate } from "react-router-dom";
+import PubSub from "pubsub-js";
+
 const { Sider } = Layout;
 interface MenuType {
   key: string;
@@ -23,6 +25,7 @@ export default function LSilder() {
       let obj: MenuType = {
         key: item.path,
         label: item.meta?.title as string,
+        icon: item.meta?.icon,
       };
       if (item.children) {
         obj.children = menuList(item.children);
@@ -54,7 +57,12 @@ export default function LSilder() {
   useEffect(() => {
     setOpenkey([firstRoute]);
   }, []);
-
+  //   定于消息
+  PubSub.subscribe("hahah", (message, data) => {
+    // console.log(data);
+    setCollapsed(data);
+    //   console.log(data);
+  });
   //   当前展开项
   //   自动展开和回收
   const handlerOpenChange = (keys: string[]) => {

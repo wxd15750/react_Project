@@ -7,6 +7,13 @@ import { RouteItem } from "./type";
 import { Home } from "../views/home/index.tsx";
 import Role from "../views/sys/role/index.tsx";
 import { Navigate } from "react-router-dom";
+import {
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  UploadOutlined,
+  UserOutlined,
+  VideoCameraOutlined,
+} from "@ant-design/icons";
 const route: Array<RouteItem> = [
   {
     path: "/login",
@@ -34,6 +41,7 @@ const route: Array<RouteItem> = [
         meta: {
           title: "首页",
           hidden: false,
+          icon: <UploadOutlined />,
         },
       },
       {
@@ -42,6 +50,7 @@ const route: Array<RouteItem> = [
         meta: {
           title: "系统管理",
           hidden: false,
+          icon: <UploadOutlined />,
         },
         children: [
           {
@@ -50,6 +59,7 @@ const route: Array<RouteItem> = [
             meta: {
               title: "角色管理",
               hidden: false,
+              icon: <UploadOutlined />,
             },
           },
         ],
@@ -60,6 +70,7 @@ const route: Array<RouteItem> = [
         meta: {
           title: "test11",
           hidden: false,
+          icon: <UploadOutlined />,
         },
         children: [
           {
@@ -68,6 +79,7 @@ const route: Array<RouteItem> = [
             meta: {
               title: "123",
               hidden: false,
+              icon: <UploadOutlined />,
             },
           },
         ],
