@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 
 // 导入样式文件
-import home from "./hom.module.scss";
+import homeStyle from "./hom.module.scss";
+// /assets/images/welcome01.png
+import welcome from "../../assets/images/welcome01.png";
 export const Home: React.FC = () => {
-  return <div>我是首页</div>;
+  return (
+    <>
+      <div className={homeStyle.home}>
+        <img src={welcome} alt="welcome" />
+      </div>
+    </>
+  );
 };
