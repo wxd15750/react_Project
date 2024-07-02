@@ -1,8 +1,9 @@
-import React from "react";
-import { useRoutes } from "react-router-dom";
-import route from "./routes/index.tsx";
 import zhCN from "antd/locale/zh_CN";
 import { ConfigProvider } from "antd";
+// import LayoutContent from "./layout/index.tsx";
+import { useRoutes } from "react-router-dom";
+import route from "./routes";
 export default function App() {
-  return <ConfigProvider locale={zhCN}>{useRoutes(route)}</ConfigProvider>;
+  let outlet = useRoutes(route);
+  return <ConfigProvider locale={zhCN}>{outlet}</ConfigProvider>;
 }
