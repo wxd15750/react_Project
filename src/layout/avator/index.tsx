@@ -6,9 +6,7 @@ export default function Avator() {
   const [collapsed, setCollapsed] = useState(false);
   //   定于消息
   PubSub.subscribe("hahah", (message, data) => {
-    // console.log(data);
     setCollapsed(data);
-    //   console.log(data);
   });
   return (
     <div className="demo-logo-vertical">
