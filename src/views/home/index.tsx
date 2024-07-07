@@ -17,7 +17,7 @@ export const Home: React.FC = () => {
   return (
     <>
       <div className={homeStyle.home}>
-        <img src={img} alt="welcome" />
+        <img src={welcome} alt="welcome" />
       </div>
     </>
   );

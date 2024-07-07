@@ -6,6 +6,9 @@ import LayoutContent from "../layout/index.tsx";
 import { RouteItem } from "./type";
 import { Home } from "../views/home/index.tsx";
 import Role from "../views/sys/role/index.tsx";
+import Menus from "../views/sys/menus/index.tsx";
+import User from "../views/sys/user/index.tsx";
+
 import { Navigate } from "react-router-dom";
 import {
   MenuFoldOutlined,
@@ -14,6 +17,9 @@ import {
   UserOutlined,
   VideoCameraOutlined,
 } from "@ant-design/icons";
+import lazyLoad from "./lazyRoute.tsx";
+import Screen from "../views/screen/index.tsx";
+
 const route: Array<RouteItem> = [
   {
     path: "/login",
@@ -46,7 +52,7 @@ const route: Array<RouteItem> = [
       },
       {
         path: "/sys",
-        element: <Role></Role>,
+        // element: <Role></Role>,
         meta: {
           title: "系统管理",
           hidden: false,
@@ -54,35 +60,42 @@ const route: Array<RouteItem> = [
         },
         children: [
           {
+            path: "/sys/menu",
+            element: lazyLoad(Menus),
+            meta: {
+              title: "菜单管理",
+              hidden: false,
+              icon: <MenuFoldOutlined />,
+            },
+          },
+          {
             path: "/sys/role",
-            element: <Role></Role>,
+            element: lazyLoad(Role),
             meta: {
               title: "角色管理",
               hidden: false,
-              icon: <UploadOutlined />,
+              icon: <UserOutlined />,
+            },
+          },
+          {
+            path: "/sys/user",
+            element: lazyLoad(User),
+            meta: {
+              title: "角色管理",
+              hidden: false,
+              icon: <VideoCameraOutlined />,
             },
           },
         ],
       },
       {
-        path: "/sys1",
-        element: <Home></Home>,
+        path: "/screen",
+        element: <Screen></Screen>,
         meta: {
-          title: "test11",
+          title: "数据大屏",
           hidden: false,
-          icon: <UploadOutlined />,
+          icon: <MenuUnfoldOutlined />,
         },
-        children: [
-          {
-            path: "/sys1/role",
-            element: <Home></Home>,
-            meta: {
-              title: "123",
-              hidden: false,
-              icon: <UploadOutlined />,
-            },
-          },
-        ],
       },
     ],
   },

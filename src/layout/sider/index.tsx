@@ -59,9 +59,7 @@ export default function LSilder() {
   }, []);
   //   定于消息
   PubSub.subscribe("hahah", (message, data) => {
-    // console.log(data);
     setCollapsed(data);
-    //   console.log(data);
   });
   //   当前展开项
   //   自动展开和回收
