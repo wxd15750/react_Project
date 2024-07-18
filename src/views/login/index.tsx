@@ -1,16 +1,37 @@
-import React from "react";
 import login from "./login.module.scss";
 import { Col, Row, Button, Form, Input } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import type { FormProps } from "antd";
 import {} from "antd";
+import { reqLogin } from "../../api/login";
+import { setToken } from "../../utils/storage";
+import { message } from "antd";
+import { useNavigate } from "react-router-dom";
 type FieldType = {
   username?: string;
   password?: string;
 };
+
 export default function Login() {
-  const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-    console.log("Success:", values);
+  let navigate = useNavigate();
+  const [messageApi, contextHoldertip] = message.useMessage();
+  const onFinish: FormProps<FieldType>["onFinish"] = async (values) => {
+    const res = await reqLogin(values);
+    if (res.code == 20000) {
+      const token = res.data.token;
+      messageApi.open({
+        type: "success",
+        content: "登录成功",
+      });
+      setToken(token);
+      // 跳转到首页
+      navigate("/");
+    } else {
+      messageApi.open({
+        type: "error",
+        content: res.message ? res.message : "用户名或密码错误",
+      });
+    }
   };
 
   const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
@@ -21,6 +42,7 @@ export default function Login() {
 
   return (
     <div className={login.loginContainer}>
+      {contextHoldertip}
       <Row justify="center">
         <Col xl={12} xs={0}></Col>
         <Col xl={12} xs={24} flex={1} style={{ height: "100%" }}>
@@ -28,6 +50,7 @@ export default function Login() {
             className={login.formItem}
             name="basic"
             wrapperCol={{ span: 24 }}
+            initialValues={{ username: "admin", password: "111111" }}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
             autoComplete="off"

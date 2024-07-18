@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PubSub from "pubsub-js";
 import avatar from "../../assets/images/avatar.png";
 
 export default function Avator() {
   const [collapsed, setCollapsed] = useState(false);
+
   //   定于消息
   PubSub.subscribe("hahah", (message, data) => {
     setCollapsed(data);
