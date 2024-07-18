@@ -1,13 +1,9 @@
 // 导入
+import React, { lazy } from "react";
 import Login from "../views/login/index.tsx";
 import NotFound from "../views/404/index.tsx";
-import AuthRoute from "../components/Author/index.tsx";
 import LayoutContent from "../layout/index.tsx";
 import { RouteItem } from "./type";
-import { Home } from "../views/home/index.tsx";
-import Role from "../views/sys/role/index.tsx";
-import Menus from "../views/sys/menus/index.tsx";
-import User from "../views/sys/user/index.tsx";
 
 import { Navigate } from "react-router-dom";
 import {
@@ -18,7 +14,12 @@ import {
   VideoCameraOutlined,
 } from "@ant-design/icons";
 import lazyLoad from "./lazyRoute.tsx";
-import Screen from "../views/screen/index.tsx";
+// 路由组件
+const Home = () => import("../views/home/index.tsx");
+const Role = () => import("../views/sys/role/index.tsx");
+const Menus = () => import("../views/sys/menus/index.tsx");
+const User = () => import("../views/sys/user/index.tsx");
+const Screen = () => import("../views/screen/index.tsx");
 
 const route: Array<RouteItem> = [
   {
@@ -43,7 +44,7 @@ const route: Array<RouteItem> = [
     children: [
       {
         path: "/home",
-        element: <Home></Home>,
+        element: lazyLoad(React.lazy(Home)),
         meta: {
           title: "首页",
           hidden: false,
@@ -61,7 +62,7 @@ const route: Array<RouteItem> = [
         children: [
           {
             path: "/sys/menu",
-            element: lazyLoad(Menus),
+            element: lazyLoad(React.lazy(Menus)),
             meta: {
               title: "菜单管理",
               hidden: false,
@@ -70,7 +71,7 @@ const route: Array<RouteItem> = [
           },
           {
             path: "/sys/role",
-            element: lazyLoad(Role),
+            element: lazyLoad(React.lazy(Role)),
             meta: {
               title: "角色管理",
               hidden: false,
@@ -79,7 +80,7 @@ const route: Array<RouteItem> = [
           },
           {
             path: "/sys/user",
-            element: lazyLoad(User),
+            element: lazyLoad(React.lazy(User)),
             meta: {
               title: "角色管理",
               hidden: false,
@@ -90,7 +91,7 @@ const route: Array<RouteItem> = [
       },
       {
         path: "/screen",
-        element: <Screen></Screen>,
+        element: <Navigate to="/screen/dataScreen"></Navigate>,
         meta: {
           title: "数据大屏",
           hidden: false,
@@ -99,7 +100,10 @@ const route: Array<RouteItem> = [
       },
     ],
   },
-
+  {
+    path: "/screen/dataScreen",
+    element: lazyLoad(React.lazy(Screen)),
+  },
   {
     path: "*",
     element: <NotFound />,

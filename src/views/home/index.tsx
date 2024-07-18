@@ -5,7 +5,8 @@ import homeStyle from "./hom.module.scss";
 // /assets/images/welcome01.png
 import welcome from "../../assets/images/welcome01.png";
 import http from "../../utils/http";
-export const Home: React.FC = () => {
+
+export default function Home() {
   let [img, setImg] = useState("");
   useEffect(() => {
     async function main() {
@@ -21,4 +22,4 @@ export const Home: React.FC = () => {
       </div>
     </>
   );
-};
+}

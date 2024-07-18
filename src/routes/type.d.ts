@@ -1,6 +1,6 @@
 export interface RouteItem {
   path: string;
-  element?: JSX.Element | null | undefined;
+  element?: React.ReactNode;
   children?: RouteItem[];
   meta?: {
     title?: string;
