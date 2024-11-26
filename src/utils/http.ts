@@ -9,8 +9,11 @@ const http = axios.create({
 http.interceptors.request.use(
   (config) => {
     let token = getToken();
+    console.log(token);
+
     if (token) {
       config.headers["token"] = token;
+      console.log(token);
     }
     return config;
   },

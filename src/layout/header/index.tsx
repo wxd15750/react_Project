@@ -6,6 +6,7 @@ import { DownOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Dropdown, Space } from "antd";
 import { reqUserInfo } from "../../api/login";
+import { useSelector } from "react-redux";
 
 const items: MenuProps["items"] = [
   {
@@ -24,18 +25,10 @@ export default function NavHeader() {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
-  let avatar = "";
-  let username = "";
+  let userInfos = useSelector((state) => state);
   // 获取用户信息
   useEffect(() => {
-    async function main() {
-      const res = await reqUserInfo();
-      
-      avatar = res.data.avatar;
-      username = res.data.name;
-      console.log(avatar,username);
-    }
-    main();
+    console.log(userInfos);
   }, []);
   //   获取地址栏的路由
   //   菜单栏的状态
@@ -67,7 +60,7 @@ export default function NavHeader() {
           <Dropdown menu={{ items }}>
             <a onClick={(e) => e.preventDefault()}>
               <Space>
-                {username}
+                {}
                 <DownOutlined />
               </Space>
             </a>
@@ -77,15 +70,10 @@ export default function NavHeader() {
             style={{ marginLeft: "20px" }}
             width={40}
             height={40}
-            src={avatar}
+            // src={avatar}
             alt=""
           />
         </div>
-        {/* <Breadcrumb style={{ margin: "16px 0" }}>
-          <Breadcrumb.Item>Home</Breadcrumb.Item>
-          <Breadcrumb.Item>List</Breadcrumb.Item>
-          <Breadcrumb.Item>App</Breadcrumb.Item>
-        </Breadcrumb> */}
       </div>
     </Header>
   );

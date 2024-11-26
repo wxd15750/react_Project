@@ -1,10 +1,11 @@
-// 通过@reduxjs/toolkit创建纯函数
 import { createSlice } from "@reduxjs/toolkit";
 import { getToken } from "../../utils/storage";
+import { reqUserInfo } from "../../api/login";
 
 // 创建纯函数
-const userInfo = createSlice({
+const userInfoStore = createSlice({
   name: "userInfo", // 名称
+  // 初始数据
   initialState: {
     // 初始数据 对象
     token: "" || getToken(),
@@ -17,14 +18,21 @@ const userInfo = createSlice({
     },
   },
   reducers: {
-    // 重新处理数据
+    // 获取用户信息
     getUserInfo: (state, action) => {
       // 数据加
-      console.log(state, action);
+      state.userInfo = action.payload;
     },
-    Reduce: (state, action) => {},
   },
 });
+// 异步数据的获取
+export const getUser = () => {
+  return async (dispatch: any) => {
+    const res = await reqUserInfo();
+    dispatch(getUserInfo(res.data));
+  };
+};
 
-export const { getUserInfo, Reduce } = userInfo.actions; // 暴露行为给组件调用
-export default userInfo.reducer; // 暴露reduce纯函数给仓库store
+export let { getUserInfo } = userInfoStore.actions; // 暴露行为给组件调用
+
+export default userInfoStore.reducer;

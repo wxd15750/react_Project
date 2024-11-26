@@ -34,12 +34,6 @@ export default function Login() {
     }
   };
 
-  const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
-    errorInfo
-  ) => {
-    console.log("Failed:", errorInfo);
-  };
-
   return (
     <div className={login.loginContainer}>
       {contextHoldertip}
@@ -52,7 +46,6 @@ export default function Login() {
             wrapperCol={{ span: 24 }}
             initialValues={{ username: "admin", password: "111111" }}
             onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
             autoComplete="off"
           >
             <h1 className={login.title_h1}>Hello</h1>
